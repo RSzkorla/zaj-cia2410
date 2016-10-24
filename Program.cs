@@ -9,9 +9,10 @@ namespace Zajecia2410
 
   class Program
   {
+    static Random rng = new Random();
     static int[] Generuj(int rozmiar,int min, int max)
     {
-      Random rng = new Random();
+
       int[] tab = new int[rozmiar];
       for (int i = 0; i < tab.Length; i++)
       {
@@ -28,15 +29,31 @@ namespace Zajecia2410
       }
     }
 
+    static int IloczynSkalarny(int[] tab1, int[] tab2)
+    {
+      int wynik=0;
+      if (tab1.Length != tab2.Length)
+      {
+        throw new ArrayTypeMismatchException("Różne rozmiary");
+      }
+
+        for (int i = 0; i < tab1.Length; i++)
+        {
+          wynik += tab1[i] * tab2[i];
+        }
+      
+      return wynik;
+    }
+
     static void Main(string[] args)
     {
-      int a, b, c;
+      int size, min, max;
       Console.WriteLine("podaj rozmiar, min i max");
-      a = Convert.ToInt32(Console.ReadLine());
-      b = Convert.ToInt32(Console.ReadLine());
-      c = Convert.ToInt32(Console.ReadLine());
+      size = Convert.ToInt32(Console.ReadLine());
+      min = Convert.ToInt32(Console.ReadLine());
+      max = Convert.ToInt32(Console.ReadLine());
       Console.WriteLine();
-      Wyswietl(Generuj(a,b,c));
+      Wyswietl(Generuj(size,min,max));
     }
   }
 }
