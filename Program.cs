@@ -20,7 +20,10 @@ namespace Zajecia2410
       }
       return tab;
     }
-
+    static void Generuj(int[] tab, int rozmiar, int min, int max)
+    {
+      tab = Generuj(rozmiar, min, max);
+    }
     static void Wyswietl(int[] tab)
     {
       foreach (var item in tab)
@@ -80,7 +83,54 @@ namespace Zajecia2410
         }
       }
     }
+    //to here
 
+    static int[,] GenerujMacierz(int l_wierszy, int l_kolumn, int min, int max)
+    {
+      int[,] tab = new int[l_wierszy, l_kolumn];
+      for (int i = 0; i < tab.GetLength(0); i++)
+      {
+        for (int j = 0; j < tab.GetLength(1); j++)
+        {
+          tab[i, j] = rng.Next(min, max);
+        }
+      }
+      return tab;
+    }
+
+    static void WyswietlMacierz(int[,] tab)
+    {
+      for (int i = 0; i < tab.GetLength(0); i++)
+      {
+        for (int j = 0; j < tab.GetLength(1); j++)
+        {
+          Console.WriteLine($"{tab[i, j]} "); 
+        }
+        Console.WriteLine();
+      }
+    }
+
+    static int[,] IlocznymMacierzy(int[,] m1,int[,] m2)
+    {
+      if (m1.GetLength(1) != m2.GetLength(0))
+      {
+        throw new ArrayTypeMismatchException("Niewłaściwe rozmiary");
+      }
+      int[,] tab = new int[m1.GetLength(0), m2.GetLength(1)];
+      for (int i = 0; i < tab.GetLength(0); i++)
+      {
+        for (int j = 0; j < tab.GetLength(1); j++)
+        {
+          int suma = 0;
+          for (int k = 0; k < m1.GetLength(0); k++)
+          {
+            suma += m1[i, k] * m2[k, j];
+          }
+          tab[i, j] = suma;
+        }
+      }
+      return tab;
+    }
     static void Main(string[] args)
     {
       int size, min, max;
@@ -88,13 +138,16 @@ namespace Zajecia2410
       size = Convert.ToInt32(Console.ReadLine());
       min = Convert.ToInt32(Console.ReadLine());
       max = Convert.ToInt32(Console.ReadLine());
-      Console.WriteLine();
-      //Wyswietl(Generuj(size,min,max));
+      //Console.WriteLine();
+      ////Wyswietl(Generuj(size,min,max));
 
-      var tab = Generuj(size, min, max);
-      Wyswietl(tab);
-      Sort(tab, Kierunek.ros);
-      Wyswietl(tab);
+      //var tab = Generuj(size, min, max);
+      //Wyswietl(tab);
+      //Sort(tab, Kierunek.ros);
+      //Wyswietl(tab);
+      int[] tab;
+      //Generuj(tab, size, min, max);
+
     }
   }
 }
