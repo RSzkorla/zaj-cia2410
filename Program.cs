@@ -9,10 +9,34 @@ namespace Zajecia2410
 
   class Program
   {
+    static int[] Generuj(int rozmiar,int min, int max)
+    {
+      Random rng = new Random();
+      int[] tab = new int[rozmiar];
+      for (int i = 0; i < tab.Length; i++)
+      {
+        tab[i] = rng.Next(min, max);
+      }
+      return tab;
+    }
+
+    static void Wyswietl(int[] tab)
+    {
+      for (int i = 0; i < tab.Length; i++)
+      {
+        Console.WriteLine($"{tab[i]}");
+      }
+    }
 
     static void Main(string[] args)
     {
-      //tworzenie tablicy 1wym na kilka sposobow;
+      int a, b, c;
+      Console.WriteLine("podaj rozmiar, min i max");
+      a = Convert.ToInt32(Console.ReadLine());
+      b = Convert.ToInt32(Console.ReadLine());
+      c = Convert.ToInt32(Console.ReadLine());
+      Console.WriteLine();
+      Wyswietl(Generuj(a,b,c));
     }
   }
 }
