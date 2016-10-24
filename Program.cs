@@ -22,9 +22,9 @@ namespace Zajecia2410
 
     static void Wyswietl(int[] tab)
     {
-      for (int i = 0; i < tab.Length; i++)
+      foreach (var item in tab)
       {
-        Console.WriteLine($"{tab[i]}");
+        Console.WriteLine($"{item}");
       }
     }
 
