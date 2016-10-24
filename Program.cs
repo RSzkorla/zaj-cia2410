@@ -25,8 +25,9 @@ namespace Zajecia2410
     {
       foreach (var item in tab)
       {
-        Console.WriteLine($"{item}");
+        Console.Out.Write($"{item} ");
       }
+      Console.WriteLine();
     }
 
     static int IloczynSkalarny(int[] tab1, int[] tab2)
@@ -45,6 +46,41 @@ namespace Zajecia2410
       return wynik;
     }
 
+    //nie działa
+    enum Kierunek
+    {
+      mal = 1,
+      ros = 2
+    }
+    static void Sort( int[] arr, Kierunek wyb )
+    {
+      int temp = 0;
+      if (wyb == Kierunek.ros)
+      {
+        for (int sort = 0; sort < arr.Length - 1; sort++)
+        {
+          if (arr[sort] > arr[sort + 1])
+          {
+            temp = arr[sort + 1];
+            arr[sort + 1] = arr[sort];
+            arr[sort] = temp;
+          }
+        }
+      }
+      else if (wyb == Kierunek.mal)
+      {
+        for (int sort = 0; sort < arr.Length - 1; sort++)
+        {
+          if (arr[sort] < arr[sort + 1])
+          {
+            temp = arr[sort + 1];
+            arr[sort + 1] = arr[sort];
+            arr[sort] = temp;
+          }
+        }
+      }
+    }
+
     static void Main(string[] args)
     {
       int size, min, max;
@@ -53,7 +89,12 @@ namespace Zajecia2410
       min = Convert.ToInt32(Console.ReadLine());
       max = Convert.ToInt32(Console.ReadLine());
       Console.WriteLine();
-      Wyswietl(Generuj(size,min,max));
+      //Wyswietl(Generuj(size,min,max));
+
+      var tab = Generuj(size, min, max);
+      Wyswietl(tab);
+      Sort(tab, Kierunek.ros);
+      Wyswietl(tab);
     }
   }
 }
